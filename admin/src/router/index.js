@@ -10,6 +10,9 @@ import ItemList from '../components/ItemList'
 import HeroCreate from '../components/HeroCreate'
 import HeroEdit from '../components/HeroEdit'
 import HeroList from '../components/HeroList'
+import ArticleCreate from '../components/ArticleCreate'
+import ArticleEdit from '../components/ArticleEdit'
+import ArticleList from '../components/ArticleList'
 
 Vue.use(Router)
 
@@ -33,7 +36,10 @@ export default new Router({
         { path: '/items/list', component: ItemList },
         { path: '/heros/create', component: HeroCreate },
         { path: '/heros/edit/:id', component: HeroEdit, props: true },
-        { path: '/heros/list', component: HeroList }
+        { path: '/heros/list', component: HeroList },
+        { path: '/articles/create', component: ArticleCreate },
+        { path: '/articles/edit/:id', component: ArticleEdit, props: true },
+        { path: '/articles/list', component: ArticleList }
       ]
     }
   ]
