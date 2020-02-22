@@ -1,6 +1,6 @@
 <template>
     <div id="item">
-        <h1>新建英雄</h1>
+        <h1>编辑英雄</h1>
         <el-form label-width="80px" @submit.native.prevent="save">
             <el-tabs value="basic">
                 <el-tab-pane label="基本信息" name="basic">
@@ -60,13 +60,13 @@
                 <el-tab-pane label="技能" name="skills">
                     <el-button type="text" icon="el-icon-plus" @click="model.skills.push({})">添加技能</el-button>
                     <el-row type="flex" style="flex-wrap: wrap;">
-                        <el-column :md="12" v-for="(item,i) in model.skills" :key="i">
+                        <el-col :md="12" v-for="(item,i) in model.skills" :key="i">
                             <el-form-item label="名称">
                                 <el-input v-model="item.name"></el-input>
                             </el-form-item>
                             <el-form-item label="图标">
                                 <el-upload class="avatar-uploader" action="http://localhost:3000/admin/api/upload"
-                                    :show-file-list="false" :on-success="skillIconAfterUpload">
+                                    :show-file-list="false" :on-success="res=>$set(item,'icon',res.url)">
                                     <img v-if="item.icon" :src="item.icon" class="avatar">
                                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                                 </el-upload>
@@ -77,7 +77,10 @@
                             <el-form-item label="小提示">
                                 <el-input type="textarea" v-model="item.tips"></el-input>
                             </el-form-item>
-                        </el-column>
+                            <el-form-item>
+                                <el-button size="small" type="danger" @click="model.skills.splice(i,1)">删除</el-button>
+                            </el-form-item>
+                        </el-col>
                     </el-row>
                 </el-tab-pane>
             </el-tabs>
