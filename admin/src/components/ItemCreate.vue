@@ -1,6 +1,6 @@
 <template>
     <div id="item">
-        <h1>新建物品</h1>
+        <h1>新建装备</h1>
         <el-form label-width="80px" @submit.native.prevent="save">
             <el-form-item label="名称">
                 <el-input v-model="model.name"></el-input>
@@ -23,7 +23,10 @@
     export default {
         data() {
             return {
-                model: {}
+                model: {
+                    name: '',
+                    icon: ''
+                }
             }
         },
         methods: {
@@ -33,7 +36,7 @@
                 this.$message.success('新建成功')
             },
             afterUpload(res) {
-                this.$set(this.model, 'icon', res.url)
+                this.model.icon = res.url
                 console.log(res)
             }
         }
