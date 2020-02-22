@@ -4,6 +4,7 @@
         <el-table ref="singleTable" :data="items" style="width: 100%">
             <el-table-column type="index" width="50"></el-table-column>
             <el-table-column property="_id" label="ID" width="250"></el-table-column>
+            <el-table-column property="parent.name" label="上级分类" width="250"></el-table-column>
             <el-table-column property="name" label="分类名称"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">

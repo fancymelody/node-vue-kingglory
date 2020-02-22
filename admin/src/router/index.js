@@ -4,6 +4,9 @@ import Main from '@/components/Main.vue'
 import CategoryCreate from '../components/CategoryCreate'
 import CategoryEdit from '../components/CategoryEdit'
 import CategoryList from '../components/CategoryList'
+import ItemCreate from '../components/ItemCreate'
+import ItemEdit from '../components/ItemEdit'
+import ItemList from '../components/ItemList'
 
 Vue.use(Router)
 
@@ -21,7 +24,10 @@ export default new Router({
       children: [
         { path: '/categories/create', component: CategoryCreate },
         { path: '/categories/list', component: CategoryList },
-        { path: '/categories/edit/:id', component: CategoryEdit, props: true }
+        { path: '/categories/edit/:id', component: CategoryEdit, props: true },
+        { path: '/items/create', component: ItemCreate },
+        { path: '/items/edit/:id', component: ItemEdit, props: true },
+        { path: '/items/list', component: ItemList }
       ]
     }
   ]
