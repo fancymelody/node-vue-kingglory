@@ -146,7 +146,7 @@
 </script>
 
 <style scoped>
-    #item .el-upload .el-upload--text {
+    .el-upload .el-upload--text {
         border: 1px dashed #fff !important;
     }
 
