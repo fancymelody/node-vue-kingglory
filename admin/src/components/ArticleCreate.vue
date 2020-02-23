@@ -23,7 +23,6 @@
 
 <script>
     import { VueEditor } from "vue2-editor";
-    import axios from "axios";
     export default {
         components: {
             VueEditor
@@ -51,20 +50,12 @@
                 this.$router.push('/articles/list')
                 this.$message.success('新建成功')
             },
-            handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+            async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
                 var formData = new FormData();
                 formData.append("file", file);
-                axios({
-                    url: "http://localhost:3000/admin/api/upload",
-                    method: "POST",
-                    data: formData
-                }).then(res => {
-                    let url = res.data.url; // Get url from response
-                    Editor.insertEmbed(cursorLocation, "image", url);
-                    resetUploader();
-                }).catch(err => {
-                    console.log(err);
-                });
+                const res = await this.$http.post("/upload", formData);
+                Editor.insertEmbed(cursorLocation, "image", res.data.url);
+                resetUploader()
             }
         }
     }

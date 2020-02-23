@@ -10,7 +10,17 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
-Vue.prototype.$http=http
+Vue.prototype.$http = http
+
+Vue.mixin({
+  methods: {
+    getAuthHeaders() {
+      return {
+        Authorization: 'Bearer ' + localStorage.token
+      }
+    }
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
