@@ -32,7 +32,7 @@
         },
         methods: {
             async getItems() {
-                const res = await this.$http.get('/items')
+                const res = await this.$http.get('/rest/items')
                 this.items = res.data
                 console.log('装备列表')
                 console.log(this.items)
@@ -48,7 +48,7 @@
                 }).catch(err => err)
                 if (confirmResult === "confirm") {
                     this.$http
-                        .delete('/items/' + row._id)
+                        .delete('/rest/items/' + row._id)
                         .then(response => {
                             console.log(response)
                             this.$message.success("删除成功")

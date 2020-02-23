@@ -44,7 +44,7 @@
         },
         methods: {
             async save() {
-                const res = await this.$http.post('/ads', this.model)
+                const res = await this.$http.post('/rest/ads', this.model)
                 this.$router.push('/ads/list')
                 this.$message.success('新建成功')
             },

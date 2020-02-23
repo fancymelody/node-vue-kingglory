@@ -50,12 +50,12 @@
         },
         methods: {
             async save() {
-                const res = await this.$http.put('/ads/' + this.id, this.model)
+                const res = await this.$http.put('/rest/ads/' + this.id, this.model)
                 this.$router.push('/ads/list')
                 this.$message.success('修改成功')
             },
             async getAd() {
-                const res = await this.$http.get('/ads/' + this.id)
+                const res = await this.$http.get('/rest/ads/' + this.id)
                 this.model = Object.assign({}, this.model, res.data)
             }
         }

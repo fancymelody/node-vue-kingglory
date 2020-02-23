@@ -37,12 +37,12 @@
         },
         methods: {
             async save() {
-                const res = await this.$http.put('/items/' + this.id, this.model)
+                const res = await this.$http.put('/rest/items/' + this.id, this.model)
                 this.$router.push('/items/list')
                 this.$message.success('修改成功')
             },
             async getItem() {
-                const res = await this.$http.get('/items/' + this.id)
+                const res = await this.$http.get('/rest/items/' + this.id)
                 this.model = res.data
             },
             afterUpload(res) {

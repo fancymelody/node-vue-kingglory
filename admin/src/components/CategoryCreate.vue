@@ -33,11 +33,11 @@
         },
         methods: {
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.parents = res.data
             },
             async save() {
-                const res = await this.$http.post('/categories', this.model)
+                const res = await this.$http.post('/rest/categories', this.model)
                 this.$router.push('/categories/list')
                 this.$message.success('新建成功')
             },

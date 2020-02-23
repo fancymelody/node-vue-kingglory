@@ -27,7 +27,7 @@
         },
         methods: {
             async getAdList() {
-                const res = await this.$http.get('/ads')
+                const res = await this.$http.get('/rest/ads')
                 this.items = res.data
             },
             gotoEdit(row) {
@@ -41,7 +41,7 @@
                 }).catch(err => err)
                 if (confirmResult === "confirm") {
                     this.$http
-                        .delete('/ads/' + row._id)
+                        .delete('/rest/ads/' + row._id)
                         .then(response => {
                             console.log(response)
                             this.$message.success("删除成功")

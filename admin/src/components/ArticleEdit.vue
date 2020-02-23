@@ -47,16 +47,16 @@
         },
         methods: {
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.categories = res.data
             },
             async save() {
-                const res = await this.$http.put('/articles/' + this.id, this.model)
+                const res = await this.$http.put('/rest/articles/' + this.id, this.model)
                 this.$router.push('/articles/list')
                 this.$message.success('修改成功')
             },
             async getArticle() {
-                const res = await this.$http.get('/articles/' + this.id)
+                const res = await this.$http.get('/rest/articles/' + this.id)
                 this.model = res.data
             },
             handleImageAdded(file, Editor, cursorLocation, resetUploader) {

@@ -28,7 +28,7 @@
         },
         methods: {
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.items = res.data
             },
             gotoEdit(row) {
@@ -42,7 +42,7 @@
                 }).catch(err => err)
                 if (confirmResult === "confirm") {
                     this.$http
-                        .delete('/categories/' + row._id)
+                        .delete('/rest/categories/' + row._id)
                         .then(response => {
                             console.log(response)
                             this.$message.success("删除成功")

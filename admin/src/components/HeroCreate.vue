@@ -123,17 +123,17 @@
         },
         methods: {
             async getItems() {
-                const res = await this.$http.get('/items')
+                const res = await this.$http.get('/rest/items')
                 this.items = res.data
                 console.log('装备列表')
                 console.log(this.items)
             },
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.categories = res.data
             },
             async save() {
-                const res = await this.$http.post('/heros', this.model)
+                const res = await this.$http.post('/rest/heros', this.model)
                 this.$router.push('/heros/list')
                 this.$message.success('新建成功')
             },

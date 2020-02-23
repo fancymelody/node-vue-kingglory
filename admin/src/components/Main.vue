@@ -1,7 +1,8 @@
 <template>
     <el-container style="height:100vh;">
         <el-aside width="200px" style="background-color: #373d41;">
-            <el-menu router background-color="#333744" text-color="#fff" active-text-color="#409EFF">
+            <el-menu router background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opend
+                :default-active="$route.path">
                 <el-submenu index="1">
                     <template slot="title"><i class="el-icon-message"></i>分类管理</template>
                     <el-menu-item-group>
@@ -31,10 +32,17 @@
                     </el-menu-item-group>
                 </el-submenu>
                 <el-submenu index="5">
-                    <template slot="title"><i class="el-icon-place"></i>广告管理</template>
+                    <template slot="title"><i class="el-icon-s-shop"></i>广告管理</template>
                     <el-menu-item-group>
                         <el-menu-item index="/ads/create">新建广告位</el-menu-item>
                         <el-menu-item index="/ads/list">广告位列表</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="6">
+                    <template slot="title"><i class="el-icon-user"></i>管理员管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
+                        <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
             </el-menu>

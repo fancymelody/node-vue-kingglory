@@ -27,7 +27,7 @@
         },
         methods: {
             async getArticleList() {
-                const res = await this.$http.get('/articles')
+                const res = await this.$http.get('/rest/articles')
                 this.items = res.data
                 console.log('文章列表')
                 console.log(this.items)
@@ -43,7 +43,7 @@
                 }).catch(err => err)
                 if (confirmResult === "confirm") {
                     this.$http
-                        .delete('/articles/' + row._id)
+                        .delete('/rest/articles/' + row._id)
                         .then(response => {
                             console.log(response)
                             this.$message.success("删除成功")

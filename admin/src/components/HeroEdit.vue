@@ -127,22 +127,22 @@
         },
         methods: {
             async getItems() {
-                const res = await this.$http.get('/items')
+                const res = await this.$http.get('/rest/items')
                 this.items = res.data
                 console.log('装备列表')
                 console.log(this.items)
             },
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.categories = res.data
             },
             async save() {
-                const res = await this.$http.put('/heros/' + this.id, this.model)
+                const res = await this.$http.put('/rest/heros/' + this.id, this.model)
                 this.$router.push('/heros/list')
                 this.$message.success('修改成功')
             },
             async getHero() {
-                const res = await this.$http.get('/heros/' + this.id)
+                const res = await this.$http.get('/rest/heros/' + this.id)
                 // 把res.data中的数据往this.model中加
                 // 如果有同名的话,会替换this.model中的数据
                 // 如果没有同名的话,保留this.model中原来的

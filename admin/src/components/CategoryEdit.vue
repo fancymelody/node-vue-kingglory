@@ -37,16 +37,16 @@
         },
         methods: {
             async getCateList() {
-                const res = await this.$http.get('/categories')
+                const res = await this.$http.get('/rest/categories')
                 this.parents = res.data
             },
             async save() {
-                const res = await this.$http.put('/categories/' + this.id, this.model)
+                const res = await this.$http.put('/rest/categories/' + this.id, this.model)
                 this.$router.push('/categories/list')
                 this.$message.success('修改成功')
             },
             async getCategory() {
-                const res = await this.$http.get('/categories/' + this.id)
+                const res = await this.$http.get('/rest/categories/' + this.id)
                 this.model = res.data
             }
         }

@@ -31,7 +31,7 @@
         },
         methods: {
             async save() {
-                const res = await this.$http.post('/items', this.model)
+                const res = await this.$http.post('/rest/items', this.model)
                 this.$router.push('/items/list')
                 this.$message.success('新建成功')
             },
