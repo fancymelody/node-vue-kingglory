@@ -26,49 +26,18 @@
             </div>
         </div>
         <!-- end of nav icons -->
-        <m-card icon="menu" title="新闻资讯">
-            <div class="nav jc-between">
-                <div class="nav-item active">
-                    <div class="nav-link">热门</div>
+        <!-- 新闻资讯 -->
+        <!-- 父组件先把数据传给子组件,子组件再把数据通过具名slot传给父组件,父组件使用的就是在子组件循环后的每个category -->
+        <m-list-card icon="menu" title="新闻资讯" :categories="newCats">
+            <template #items="{category}">
+                <div class="py-2" v-for="(news,i) in category.newsList" :key="i">
+                    <span>[{{news.categoryName}}]</span>
+                    <span>|</span>
+                    <span>{{news.title}}</span>
+                    <span>{{news.date}}</span>
                 </div>
-                <div class="nav-item">
-                    <div class="nav-link">新闻</div>
-                </div>
-                <div class="nav-item">
-                    <div class="nav-link">新闻</div>
-                </div>
-                <div class="nav-item">
-                    <div class="nav-link">新闻</div>
-                </div>
-                <div class="nav-item">
-                    <div class="nav-link">新闻</div>
-                </div>
-            </div>
-            <div class="pt-3">
-                <swiper>
-                    <swiper-slide  v-for="m in 5" :key="m">
-                        <div class="py-2" v-for="n in 5" :key="n">
-                            <span>新闻</span>
-                            <span>|</span>
-                            <span>新星元部件爆料丨渐变马尾&白金战服！伽罗换装出击~</span>
-                            <span>02/24</span>
-                        </div>
-                    </swiper-slide>
-                </swiper>
-            </div>
-        </m-card>
-        <m-card icon="card-hero" title="英雄列表">
-
-        </m-card>
-        <m-card icon="card-hero" title="英雄列表">
-
-        </m-card>
-        <m-card icon="card-hero" title="英雄列表">
-
-        </m-card>
-        <m-card icon="card-hero" title="英雄列表">
-
-        </m-card>
+            </template>
+        </m-list-card>
     </div>
 </template>
 
@@ -81,6 +50,48 @@
                         el: '.swiper-pagination'
                     }
                 },
+                newCats: [
+                    {
+                        name: '热门',
+                        newsList: new Array(5).fill({}).map(v => ({
+                            categoryName: '公告',
+                            title: '6月2日全服不停机更新公告',
+                            date: '06/01'
+                        }))
+                    },
+                    {
+                        name: '新闻',
+                        newsList: new Array(5).fill({}).map(v => ({
+                            categoryName: '新闻',
+                            title: '6月2日全服不停机更新公告',
+                            date: '06/01'
+                        }))
+                    },
+                    {
+                        name: '热门',
+                        newsList: new Array(5).fill({}).map(v => ({
+                            categoryName: '公告',
+                            title: '6月2日全服不停机更新公告',
+                            date: '06/01'
+                        }))
+                    },
+                    {
+                        name: '热门',
+                        newsList: new Array(5).fill({}).map(v => ({
+                            categoryName: '公告',
+                            title: '6月2日全服不停机更新公告',
+                            date: '06/01'
+                        }))
+                    },
+                    {
+                        name: '热门',
+                        newsList: new Array(5).fill({}).map(v => ({
+                            categoryName: '公告',
+                            title: '6月2日全服不停机更新公告',
+                            date: '06/01'
+                        }))
+                    }
+                ]
             }
         }
     }
