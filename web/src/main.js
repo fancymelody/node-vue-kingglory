@@ -12,7 +12,12 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.config.productionTip = false
 
+import Card from './components/Card.vue'
+Vue.component('m-card',Card)
+
+import './assets/iconfont/iconfont.css'
 import './style.scss'
+import './_variables.scss'
 
 /* eslint-disable no-new */
 new Vue({
