@@ -30,11 +30,11 @@
         <!-- 父组件先把数据传给子组件,子组件再把数据通过具名slot传给父组件,父组件使用的就是在子组件循环后的每个category -->
         <m-list-card icon="menu" title="新闻资讯" :categories="newCats">
             <template #items="{category}">
-                <div class="py-2" v-for="(news,i) in category.newsList" :key="i">
-                    <span>[{{news.categoryName}}]</span>
-                    <span>|</span>
-                    <span>{{news.title}}</span>
-                    <span>{{news.date}}</span>
+                <div class="py-2 fs-lg d-flex" v-for="(news,i) in category.newsList" :key="i">
+                    <span class="text-info">[{{news.categoryName}}]</span>
+                    <span class="px-2">|</span>
+                    <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{news.title}}</span>
+                    <span class="text-grey-1 fs-sm">{{news.createdAt|date}}</span>
                 </div>
             </template>
         </m-list-card>
@@ -42,7 +42,13 @@
 </template>
 
 <script>
+    import dayjs from 'dayjs'
     export default {
+        filters: {
+            date(val) {
+                return dayjs(val).format('MM/DD')
+            }
+        },
         data() {
             return {
                 swiperOption: {
@@ -50,48 +56,16 @@
                         el: '.swiper-pagination'
                     }
                 },
-                newCats: [
-                    {
-                        name: '热门',
-                        newsList: new Array(5).fill({}).map(v => ({
-                            categoryName: '公告',
-                            title: '6月2日全服不停机更新公告',
-                            date: '06/01'
-                        }))
-                    },
-                    {
-                        name: '新闻',
-                        newsList: new Array(5).fill({}).map(v => ({
-                            categoryName: '新闻',
-                            title: '6月2日全服不停机更新公告',
-                            date: '06/01'
-                        }))
-                    },
-                    {
-                        name: '热门',
-                        newsList: new Array(5).fill({}).map(v => ({
-                            categoryName: '公告',
-                            title: '6月2日全服不停机更新公告',
-                            date: '06/01'
-                        }))
-                    },
-                    {
-                        name: '热门',
-                        newsList: new Array(5).fill({}).map(v => ({
-                            categoryName: '公告',
-                            title: '6月2日全服不停机更新公告',
-                            date: '06/01'
-                        }))
-                    },
-                    {
-                        name: '热门',
-                        newsList: new Array(5).fill({}).map(v => ({
-                            categoryName: '公告',
-                            title: '6月2日全服不停机更新公告',
-                            date: '06/01'
-                        }))
-                    }
-                ]
+                newCats: []
+            }
+        },
+        created() {
+            this.fetchNewsCats()
+        },
+        methods: {
+            async fetchNewsCats() {
+                const res = await this.$http.get('/news/list')
+                this.newCats = res.data
             }
         }
     }
