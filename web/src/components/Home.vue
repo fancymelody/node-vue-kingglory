@@ -30,12 +30,13 @@
         <!-- 父组件先把数据传给子组件,子组件再把数据通过具名slot传给父组件,父组件使用的就是在子组件循环后的每个category -->
         <m-list-card icon="menu" title="新闻资讯" :categories="newCats">
             <template #items="{category}">
-                <div class="py-2 fs-lg d-flex" v-for="(news,i) in category.newsList" :key="i">
+                <router-link tag="div" :to="`/articles/${news._id}`" class="py-2 fs-lg d-flex"
+                    v-for="(news,i) in category.newsList" :key="i">
                     <span class="text-info">[{{news.categoryName}}]</span>
                     <span class="px-2">|</span>
                     <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{news.title}}</span>
                     <span class="text-grey-1 fs-sm">{{news.createdAt|date}}</span>
-                </div>
+                </router-link>
             </template>
         </m-list-card>
         <!-- 英雄列表 -->

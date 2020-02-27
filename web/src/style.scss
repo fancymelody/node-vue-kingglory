@@ -18,6 +18,9 @@ a{
     color:#999;
     text-decoration: none;
 }
+p{
+    line-height: 1.5rem;
+}
 i{
     font-style: normal;
 }
@@ -155,4 +158,10 @@ i{
         height: 0.7692rem;
         background-position: 38.577% 52.076%;
       }
+}
+// borders
+@each $dir in (top,right,bottom,left) {
+    .border-#{$dir}{
+        .border-#{$dir}:1px solid map-get($colors,'dark-1');
+    }
 }
