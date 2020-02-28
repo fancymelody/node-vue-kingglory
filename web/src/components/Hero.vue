@@ -74,6 +74,42 @@
                                 </div>
                             </div>
                         </div>
+                        <m-card plain icon="menu" title="出装推荐" class="hero-items">
+                            <div class="fs-xl">顺风出装</div>
+                            <div class="d-flex jc-around text-center mt-3">
+                                <div v-for="item in model.items1" :key="item.name">
+                                    <img :src="item.icon" class="icon">
+                                    <div class="fs-xs">{{item.name}}</div>
+                                </div>
+                            </div>
+                            <div class="border-bottom mt-3"></div>
+                            <div class="fs-xl mt-3">逆风出装</div>
+                            <div class="d-flex jc-around text-center mt-3">
+                                <div v-for="item in model.items2" :key="item.name">
+                                    <img :src="item.icon" class="icon">
+                                    <div class="fs-xs">{{item.name}}</div>
+                                </div>
+                            </div>
+                        </m-card>
+                        <m-card plain icon="menu" title="使用技巧">
+                            <p class="m-0">{{model.usageTips}}</p>
+                        </m-card>
+                        <m-card plain icon="menu" title="对抗技巧">
+                            <p class="m-0">{{model.battleTips}}</p>
+                        </m-card>
+                        <m-card plain icon="menu" title="团战思路">
+                            <p class="m-0">{{model.teamTips}}</p>
+                        </m-card>
+                        <m-card plain icon="menu" title="英雄关系">
+                            <div class="fs-xl">最佳搭档</div>
+                            <div v-for="item in model.partners" :key="item.name" class="d-flex ai-center pt-3">
+                                <img :src="item.hero.avatar" alt="" height="50">
+                                <p class="flex-1 m-0 ml-3">
+                                    {{item.description}}
+                                </p>
+                            </div>
+                            <div class="border-bottom"></div>
+                        </m-card>
                     </div>
                 </swiper-slide>
                 <swiper-slide></swiper-slide>
@@ -152,6 +188,14 @@
                 border-color: map-get($colors, 'primary');
             }
 
+            border-radius: 50%;
+        }
+    }
+
+    .hero-items {
+        img.icon {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
         }
     }
