@@ -17,6 +17,13 @@
                             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                     </el-form-item>
+                    <el-form-item label="banner">
+                        <el-upload class="avatar-uploader" action="http://localhost:3000/admin/api/upload"
+                            :headers="getAuthHeaders()" :show-file-list="false" :on-success="res=>model.avatar=res.url">
+                            <img v-if="model.banner" :src="model.banner" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                        </el-upload>
+                    </el-form-item>
                     <el-form-item label="类型">
                         <el-select v-model="model.categories" multiple>
                             <el-option v-for="item in categories" :label="item.name" :value="item._id" :key="item._id">
@@ -72,6 +79,12 @@
                                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                                 </el-upload>
                             </el-form-item>
+                            <el-form-item label="冷却值">
+                                <el-input v-model="item.delay"></el-input>
+                            </el-form-item>
+                            <el-form-item label="消耗">
+                                <el-input v-model="item.cost"></el-input>
+                            </el-form-item>
                             <el-form-item label="描述">
                                 <el-input type="textarea" v-model="item.description"></el-input>
                             </el-form-item>
@@ -80,6 +93,26 @@
                             </el-form-item>
                             <el-form-item>
                                 <el-button size="small" type="danger" @click="model.skills.splice(i,1)">删除</el-button>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                </el-tab-pane>
+                <el-tab-pane label="最佳搭档" name="partners">
+                    <el-button type="text" icon="el-icon-plus" @click="model.partners.push({})">添加英雄</el-button>
+                    <el-row type="flex" style="flex-wrap: wrap;">
+                        <el-col :md="12" v-for="(item,i) in model.partners" :key="i">
+                            <el-form-item label="英雄">
+                                <el-select filterable v-model="item.hero">
+                                    <el-option v-for="heroitem in heroes" :key="heroitem._id" :value="heroitem._id"
+                                        :label="heroitem.name">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="描述">
+                                <el-input type="textarea" v-model="item.description"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button size="small" type="danger" @click="model.partners.splice(i,1)">删除</el-button>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -99,6 +132,7 @@
                 model: {
                     name: '',
                     avatar: '',
+                    banner: '',
                     title: '',
                     categories: [],
                     scores: {
@@ -112,15 +146,18 @@
                     usageTips: '',
                     battleTips: '',
                     teamTips: '',
-                    skills: []
+                    skills: [],
+                    partners: []
                 },
                 categories: [],
-                items: []
+                items: [],
+                heroes: []
             }
         },
         created() {
             this.getCateList()
             this.getItems()
+            this.getHeroes()
         },
         methods: {
             async getItems() {
@@ -128,6 +165,12 @@
                 this.items = res.data
                 console.log('装备列表')
                 console.log(this.items)
+            },
+            async getHeroes() {
+                const res = await this.$http.get('/rest/heroes')
+                this.heroes = res.data
+                console.log('英雄列表')
+                console.log(this.heroes)
             },
             async getCateList() {
                 const res = await this.$http.get('/rest/categories')
